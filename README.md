@@ -2,8 +2,8 @@
 
 Chosen Mobile Test
 
-Q1 : Dart
-Q2 : Dart & Flutter
+- Q1 : Dart
+- Q2 : Dart & Flutter
 
 ## Usage
 
