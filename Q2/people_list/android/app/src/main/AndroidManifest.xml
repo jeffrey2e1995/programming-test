@@ -3,6 +3,9 @@
         android:label="people_list"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
+        <!-- API KEY for Google API -->
+        <meta-data android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyDmYFm0tNtp47sGleN_gC0VEX-qVdCPWnI" />
         <activity
             android:name=".MainActivity"
             android:exported="true"
