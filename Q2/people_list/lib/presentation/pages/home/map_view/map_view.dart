@@ -7,6 +7,7 @@ import 'package:people_list/application/people_list/people_list_store.dart';
 import 'package:people_list/infrastructure/singletons/singletons.dart';
 import 'package:people_list/presentation/widgets/loading_widget.dart';
 import 'package:people_list/presentation/widgets/map/google_map_widget.dart';
+import 'package:people_list/utils/constants/strings.dart';
 
 class MapViewTap extends StatelessWidget {
   MapViewTap({super.key});
@@ -23,7 +24,7 @@ class MapViewTap extends StatelessWidget {
                     _peopleListStore.peopleList!.isEmpty
                 ? Center(
                     child: Text(
-                      "No records.",
+                      Strings.noRecordMsg,
                       style: TextStyle(
                         color: Colors.red,
                       ),
@@ -31,19 +32,16 @@ class MapViewTap extends StatelessWidget {
                   )
                 : GoogleMapWidget(
                     center: LatLng(
-                        _peopleListStore.peopleList?.first.location?.latitude ??
+                        _peopleListStore.peopleList?[1].location?.latitude ??
                             0.0,
-                        _peopleListStore
-                                .peopleList?.first.location?.longitude ??
+                        _peopleListStore.peopleList?[1].location?.longitude ??
                             0.0),
-                    markers: _peopleListStore.peopleList!
-                        .map(
-                          (e) => LatLng(
-                            e.location?.latitude ?? 0.0,
-                            e.location?.longitude ?? 0.0,
-                          ),
-                        )
-                        .toList(),
+                    markers: _peopleListStore.peopleList!.map((e) {
+                      return LatLng(
+                        e.location?.latitude ?? 0.0,
+                        e.location?.longitude ?? 0.0,
+                      );
+                    }).toList(),
                   );
       },
     );

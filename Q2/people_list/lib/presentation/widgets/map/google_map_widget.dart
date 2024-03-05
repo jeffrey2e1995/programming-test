@@ -11,14 +11,14 @@ class GoogleMapWidget extends StatelessWidget {
   const GoogleMapWidget({
     super.key,
     required this.center,
-    this.zoom = 12.0,
+    this.zoom = 13.0,
     required this.markers,
   });
 
   static void showFullScreenMap(BuildContext context,
       {required LatLng center,
       required List<LatLng> markers,
-      double zoom = 12.0}) {
+      double zoom = 13.0}) {
     showDialog<String>(
       context: context,
       builder: (BuildContext dialogContext) {

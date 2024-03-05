@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-
-import '../utils/constants/assets.dart';
+import 'package:people_list/utils/constants/assets.dart';
 
 class Background extends StatelessWidget {
   const Background({required this.child, this.bottomNavigationBar, super.key});
@@ -12,7 +11,6 @@ class Background extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        padding: const EdgeInsets.only(bottom: 30.0),
         decoration: BoxDecoration(
           image: DecorationImage(
             image: Image.asset(

@@ -10,5 +10,5 @@ class Strings {
   static const no = 'No';
   static const listViewTabTitle = 'List View';
   static const mapViewTabTitle = 'Map View';
-  static const String noRecordMsg = 'No records.';
+  static const String noRecordMsg = 'No record.';
 }

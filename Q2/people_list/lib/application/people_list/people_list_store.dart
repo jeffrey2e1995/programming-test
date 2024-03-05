@@ -35,6 +35,10 @@ abstract class _PeopleListStore with Store {
 
   bool _success = false;
 
+  @observable
+  Person? _currentPerson;
+  Person? get currentPerson => _currentPerson;
+
   @action
   Future<void> getPeopleList(BuildContext context) async {
     _isLoading = true;
@@ -67,5 +71,10 @@ abstract class _PeopleListStore with Store {
   @action
   void savePeopleList(List<Person>? list) {
     _peopleList = list;
+  }
+
+  @action
+  void setCurrentPerson(Person? p) {
+    _currentPerson = p;
   }
 }

@@ -41,6 +41,22 @@ mixin _$PeopleListStore on _PeopleListStore, Store {
     });
   }
 
+  late final _$_currentPersonAtom =
+      Atom(name: '_PeopleListStore._currentPerson', context: context);
+
+  @override
+  Person? get _currentPerson {
+    _$_currentPersonAtom.reportRead();
+    return super._currentPerson;
+  }
+
+  @override
+  set _currentPerson(Person? value) {
+    _$_currentPersonAtom.reportWrite(value, super._currentPerson, () {
+      super._currentPerson = value;
+    });
+  }
+
   late final _$getPeopleListAsyncAction =
       AsyncAction('_PeopleListStore.getPeopleList', context: context);
 
@@ -58,6 +74,17 @@ mixin _$PeopleListStore on _PeopleListStore, Store {
         name: '_PeopleListStore.savePeopleList');
     try {
       return super.savePeopleList(list);
+    } finally {
+      _$_PeopleListStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
+  void setCurrentPerson(Person? p) {
+    final _$actionInfo = _$_PeopleListStoreActionController.startAction(
+        name: '_PeopleListStore.setCurrentPerson');
+    try {
+      return super.setCurrentPerson(p);
     } finally {
       _$_PeopleListStoreActionController.endAction(_$actionInfo);
     }
