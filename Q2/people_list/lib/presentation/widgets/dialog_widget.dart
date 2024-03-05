@@ -5,8 +5,9 @@
 // ignore_for_file: prefer_const_constructors
 
 import 'package:flutter/material.dart';
-import 'package:people_list/untils/constants/assets.dart';
-import 'package:people_list/untils/constants/strings.dart';
+import 'package:people_list/utils/constants/assets.dart';
+import 'package:people_list/utils/constants/colors.dart';
+import 'package:people_list/utils/constants/strings.dart';
 import 'package:people_list/presentation/widgets/app_button_widget.dart';
 
 class DialogWidget extends StatelessWidget {
@@ -81,8 +82,8 @@ class DialogWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      // backgroundColor: AppColors.hex_0B202D,
-      backgroundColor: Colors.blue,
+      backgroundColor: AppColors.hex_0B202D,
+      // backgroundColor: Colors.blue,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(18.0, 0, 18.0, 18.0),
         child: Column(
@@ -117,8 +118,8 @@ class DialogWidget extends StatelessWidget {
               subTitle,
               textAlign: msgAlign,
               style: TextStyle(
-                // color: AppColors.hex_A5A5A9,
-                color: Colors.white,
+                color: AppColors.hex_A5A5A9,
+                // color: Colors.white,
                 fontSize: 15,
               ),
             ),

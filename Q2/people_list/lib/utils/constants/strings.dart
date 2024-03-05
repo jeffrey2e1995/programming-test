@@ -8,4 +8,7 @@ class Strings {
   static const cancel = 'Cancel';
   static const yes = 'Yes';
   static const no = 'No';
+  static const listViewTabTitle = 'List View';
+  static const mapViewTabTitle = 'Map View';
+  static const String noRecordMsg = 'No records.';
 }

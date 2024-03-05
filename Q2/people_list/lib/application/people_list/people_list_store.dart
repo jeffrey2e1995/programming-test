@@ -6,7 +6,7 @@ import 'package:people_list/application/error/error_store.dart';
 import 'package:people_list/domain/person/model/person.dart';
 import 'package:people_list/infrastructure/repositories/people_list/people_list_repository.dart';
 import 'package:people_list/infrastructure/singletons/singletons.dart';
-import 'package:people_list/untils/constants/strings.dart';
+import 'package:people_list/utils/constants/strings.dart';
 import 'package:people_list/presentation/widgets/dialog_widget.dart';
 
 part 'people_list_store.g.dart';
@@ -41,19 +41,26 @@ abstract class _PeopleListStore with Store {
     _success = false;
 
     try {
-      final response = await _repository.getPeopleList();
+      final peopleList = await _repository.getPeopleList();
 
-      if (response != null && response.statusCode == 200) {
+      if (peopleList != null) {
         _success = true;
+        _isLoading = false;
+        savePeopleList(peopleList);
         return;
       }
     } catch (e) {
       _errorStore.setErrorMessage(e.toString());
     }
 
+    _isLoading = false;
     if (!_success && context.mounted) {
       DialogWidget.showErrorDialog(
-          context, _errorStore.getErrorMessage(Strings.loadPeopleListError));
+        context,
+        _errorStore.getErrorMessage(
+          Strings.loadPeopleListError,
+        ),
+      );
     }
   }
 

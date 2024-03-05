@@ -1,5 +1,5 @@
 import 'package:dio/dio.dart';
-import 'package:people_list/untils/log/log.dart';
+import 'package:people_list/utils/log/log.dart';
 
 class DioClient {
   final Dio _dio;

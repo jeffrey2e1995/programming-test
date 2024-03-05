@@ -61,8 +61,8 @@ class GoogleMapWidget extends StatelessWidget {
       myLocationButtonEnabled: false,
       zoomControlsEnabled: true,
       tiltGesturesEnabled: false,
-      rotateGesturesEnabled: false,
-      scrollGesturesEnabled: false,
+      rotateGesturesEnabled: true,
+      scrollGesturesEnabled: true,
       markers: markers
           .asMap()
           .entries

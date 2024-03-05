@@ -2,7 +2,7 @@
 
 import 'package:flutter/foundation.dart';
 import 'package:mobx/mobx.dart';
-import 'package:people_list/untils/log/log.dart';
+import 'package:people_list/utils/log/log.dart';
 part 'error_store.g.dart';
 
 class ErrorStore = _ErrorStore with _$ErrorStore;

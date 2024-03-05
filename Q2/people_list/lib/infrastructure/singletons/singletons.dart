@@ -1,6 +1,6 @@
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
-import 'package:people_list/application/people_list/error/error_store.dart';
+import 'package:people_list/application/error/error_store.dart';
 import 'package:people_list/application/people_list/people_list_store.dart';
 import 'package:people_list/infrastructure/data/network/api/people_list/people_list_api.dart';
 import 'package:people_list/infrastructure/data/network/dio/dio_client.dart';
@@ -10,12 +10,12 @@ import 'package:people_list/infrastructure/repositories/people_list/people_list_
 final getIt = GetIt.instance;
 
 Future<void> setupSingletons() async {
+  // error
+  getIt.registerSingleton<ErrorStore>(ErrorStore());
+
   // network
   getIt.registerSingleton<Dio>(DioProvider.provideDio());
   getIt.registerSingleton(DioClient(getIt<Dio>()));
-
-  // error
-  getIt.registerSingleton(ErrorStore());
 
   // people-list
   getIt.registerSingleton(PeopleListApi(getIt.get<DioClient>()));

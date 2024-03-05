@@ -1,4 +1,4 @@
-import 'package:people_list/infrastructure/data/network/api/api_response_model.dart';
+import 'package:people_list/domain/person/model/person.dart';
 import 'package:people_list/infrastructure/data/network/api/people_list/people_list_api.dart';
 
 class PeopleListRepository {
@@ -8,7 +8,7 @@ class PeopleListRepository {
   PeopleListRepository(this.peopleListApi);
 
   // methods
-  Future<ApiStringResponse?> getPeopleList() async {
+  Future<List<Person>?> getPeopleList() async {
     return await peopleListApi.getPeopleList();
   }
 
