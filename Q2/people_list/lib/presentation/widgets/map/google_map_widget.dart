@@ -4,18 +4,21 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GoogleMapWidget extends StatelessWidget {
-  final double latitude;
-  final double longitude;
+  final LatLng center;
   final double zoom;
+  final List<LatLng> markers;
 
-  const GoogleMapWidget(
-      {super.key,
-      required this.latitude,
-      required this.longitude,
-      this.zoom = 17.0});
+  const GoogleMapWidget({
+    super.key,
+    required this.center,
+    this.zoom = 12.0,
+    required this.markers,
+  });
 
-  static void showFullScreenMap(BuildContext context, double lat, double long,
-      {double zoom = 17.0}) {
+  static void showFullScreenMap(BuildContext context,
+      {required LatLng center,
+      required List<LatLng> markers,
+      double zoom = 12.0}) {
     showDialog<String>(
       context: context,
       builder: (BuildContext dialogContext) {
@@ -23,9 +26,9 @@ class GoogleMapWidget extends StatelessWidget {
           child: Stack(
             children: [
               GoogleMapWidget(
-                latitude: lat,
-                longitude: long,
+                center: center,
                 zoom: zoom,
+                markers: markers,
               ),
               Container(
                 alignment: Alignment.topRight,
@@ -52,7 +55,7 @@ class GoogleMapWidget extends StatelessWidget {
     return GoogleMap(
       onMapCreated: (controller) {},
       initialCameraPosition: CameraPosition(
-        target: LatLng(latitude, longitude),
+        target: center,
         zoom: zoom,
       ),
       myLocationButtonEnabled: false,
@@ -60,12 +63,16 @@ class GoogleMapWidget extends StatelessWidget {
       tiltGesturesEnabled: false,
       rotateGesturesEnabled: false,
       scrollGesturesEnabled: false,
-      markers: <Marker>{
-        Marker(
-          markerId: MarkerId("marker_id_1"),
-          position: LatLng(latitude, longitude),
-        ),
-      },
+      markers: markers
+          .asMap()
+          .entries
+          .map(
+            (e) => Marker(
+              markerId: MarkerId("marker_id_${e.key}"),
+              position: LatLng(e.value.latitude, e.value.longitude),
+            ),
+          )
+          .toSet(),
     );
   }
 }
