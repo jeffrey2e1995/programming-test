@@ -19,7 +19,6 @@ class PeopleListApi {
   Future<List<Person>?> getPeopleList() async {
     try {
       final res = await _dioClient.get(
-        // '${Envs.aaiBaseUrl}/anticollision/api/events',
         '${Envs.apiBaseUrl}/$getListEndpoint',
         queryParameters: {},
       );

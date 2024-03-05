@@ -31,15 +31,42 @@ class MapViewTap extends StatelessWidget {
                     ),
                   )
                 : GoogleMapWidget(
-                    center: LatLng(
-                        _peopleListStore.peopleList?[1].location?.latitude ??
-                            0.0,
-                        _peopleListStore.peopleList?[1].location?.longitude ??
-                            0.0),
+                    center: _peopleListStore.currentPerson == null
+                        ? Marker(
+                            markerId:
+                                MarkerId(_peopleListStore.peopleList!.first.id),
+                            position: LatLng(
+                              _peopleListStore
+                                      .peopleList?.first.location?.latitude ??
+                                  0.0,
+                              _peopleListStore
+                                      .peopleList?.first.location?.longitude ??
+                                  0.0,
+                            ),
+                          )
+                        : Marker(
+                            markerId:
+                                MarkerId(_peopleListStore.currentPerson!.id),
+                            position: LatLng(
+                              _peopleListStore
+                                      .currentPerson?.location?.latitude ??
+                                  0.0,
+                              _peopleListStore
+                                      .currentPerson?.location?.longitude ??
+                                  0.0,
+                            ),
+                          ),
                     markers: _peopleListStore.peopleList!.map((e) {
-                      return LatLng(
-                        e.location?.latitude ?? 0.0,
-                        e.location?.longitude ?? 0.0,
+                      return Marker(
+                        markerId: MarkerId(e.id),
+                        position: LatLng(
+                          e.location?.latitude ?? 0.0,
+                          e.location?.longitude ?? 0.0,
+                        ),
+                        infoWindow: InfoWindow(
+                          title: e.name.toString(),
+                          snippet: e.location.toString(),
+                        ),
                       );
                     }).toList(),
                   );

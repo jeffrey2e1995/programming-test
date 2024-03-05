@@ -3,19 +3,23 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
+import 'package:flutter_mobx/flutter_mobx.dart';
+import 'package:people_list/application/people_list/people_list_store.dart';
 import 'package:people_list/domain/person/model/person.dart';
+import 'package:people_list/infrastructure/singletons/singletons.dart';
 import 'package:people_list/presentation/pages/home/list_view/detail/detail.dart';
 import 'package:people_list/utils/constants/assets.dart';
 import 'package:people_list/utils/constants/colors.dart';
 
 class ListViewTileWidget extends StatelessWidget {
-  const ListViewTileWidget({
+  ListViewTileWidget({
     super.key,
     required this.person,
     required this.onTap,
   });
 
   final Person person;
+  final PeopleListStore _peopleListStore = getIt.get<PeopleListStore>();
 
   // Event when the record is tapped
   final void Function() onTap;
@@ -28,39 +32,44 @@ class ListViewTileWidget extends StatelessWidget {
       },
       child: Padding(
         padding: const EdgeInsets.symmetric(vertical: 5.0),
-        child: Container(
-          padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
-          decoration: BoxDecoration(
-            color: AppColors.hex_494949,
-            borderRadius: BorderRadius.circular(5.0),
-          ),
-          child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Expanded(
-                child: Row(
-                  children: [
-                    _buildImage(),
-                    SizedBox(
-                      width: 20,
-                    ),
-                    _buildName(),
-                  ],
+        child: Observer(builder: (context) {
+          return Container(
+            padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
+            decoration: BoxDecoration(
+              color: AppColors.hex_494949,
+              borderRadius: BorderRadius.circular(5.0),
+              border: _peopleListStore.currentPerson == person
+                  ? Border.all(color: Colors.white, width: 3.0)
+                  : null,
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Expanded(
+                  child: Row(
+                    children: [
+                      _buildImage(),
+                      SizedBox(
+                        width: 20,
+                      ),
+                      _buildName(),
+                    ],
+                  ),
                 ),
-              ),
-              InkWell(
-                onTap: () {
-                  _openDetail(context, person);
-                },
-                child: Icon(
-                  Icons.launch_rounded,
-                  size: 30,
-                  color: Colors.white,
-                ),
-              )
-            ],
-          ),
-        ),
+                InkWell(
+                  onTap: () {
+                    _openDetail(context, person);
+                  },
+                  child: Icon(
+                    Icons.launch_rounded,
+                    size: 30,
+                    color: Colors.white,
+                  ),
+                )
+              ],
+            ),
+          );
+        }),
       ),
     );
   }

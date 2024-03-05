@@ -4,9 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class GoogleMapWidget extends StatelessWidget {
-  final LatLng center;
+  final Marker center;
   final double zoom;
-  final List<LatLng> markers;
+  final List<Marker> markers;
 
   const GoogleMapWidget({
     super.key,
@@ -16,8 +16,8 @@ class GoogleMapWidget extends StatelessWidget {
   });
 
   static void showFullScreenMap(BuildContext context,
-      {required LatLng center,
-      required List<LatLng> markers,
+      {required Marker center,
+      required List<Marker> markers,
       double zoom = 13.0}) {
     showDialog<String>(
       context: context,
@@ -53,9 +53,11 @@ class GoogleMapWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return GoogleMap(
-      onMapCreated: (controller) {},
+      onMapCreated: (controller) {
+        controller.showMarkerInfoWindow(center.markerId);
+      },
       initialCameraPosition: CameraPosition(
-        target: center,
+        target: center.position,
         zoom: zoom,
       ),
       myLocationButtonEnabled: false,
@@ -63,16 +65,7 @@ class GoogleMapWidget extends StatelessWidget {
       tiltGesturesEnabled: false,
       rotateGesturesEnabled: true,
       scrollGesturesEnabled: true,
-      markers: markers
-          .asMap()
-          .entries
-          .map(
-            (e) => Marker(
-              markerId: MarkerId("marker_id_${e.key}"),
-              position: LatLng(e.value.latitude, e.value.longitude),
-            ),
-          )
-          .toSet(),
+      markers: markers.map((e) => e).toSet(),
     );
   }
 }

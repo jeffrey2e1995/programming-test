@@ -27,10 +27,10 @@ class Person {
 
   Map<String, dynamic> toJson() => <String, dynamic>{
         'id': id,
-        'name': name == null ? null : name!.toJson(),
+        'name': name?.toJson(),
         'email': email,
         'picture': picture,
-        'location': location == null ? null : location!.toJson(),
+        'location': location?.toJson(),
       };
 
   @override
@@ -60,6 +60,11 @@ class Name {
         'last': last,
         'first': first,
       };
+
+  @override
+  String toString() {
+    return first == null ? '---' : '$first${last != null ? ', $last' : ','}';
+  }
 }
 
 class Location {
@@ -80,4 +85,9 @@ class Location {
         'latitude': latitude,
         'longitude': longitude,
       };
+
+  @override
+  String toString() {
+    return latitude == null ? '---' : '$latitude, ${longitude ?? '---'}';
+  }
 }

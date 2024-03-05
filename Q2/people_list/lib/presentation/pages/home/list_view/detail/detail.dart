@@ -30,11 +30,18 @@ class DetailScreen extends StatelessWidget {
       child: Stack(
         children: [
           GoogleMapWidget(
-            center: LatLng(person.location?.latitude ?? 0.0,
-                person.location?.longitude ?? 0.0),
+            center: Marker(
+                markerId: MarkerId(person.id),
+                position: LatLng(person.location?.latitude ?? 0.0,
+                    person.location?.longitude ?? 0.0)),
             markers: [
-              LatLng(person.location?.latitude ?? 0.0,
-                  person.location?.longitude ?? 0.0)
+              Marker(
+                markerId: MarkerId(person.id),
+                position: LatLng(
+                  person.location?.latitude ?? 0.0,
+                  person.location?.longitude ?? 0.0,
+                ),
+              ),
             ],
           ),
           Positioned(
