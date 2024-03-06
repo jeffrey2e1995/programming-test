@@ -36,7 +36,7 @@ class ListViewTileWidget extends StatelessWidget {
           return Container(
             padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
             decoration: BoxDecoration(
-              color: AppColors.hex_494949,
+              color: AppColors.infoTileBgGrey,
               borderRadius: BorderRadius.circular(5.0),
               border: _peopleListStore.currentPerson == person
                   ? Border.all(color: Colors.white, width: 3.0)
@@ -75,17 +75,24 @@ class ListViewTileWidget extends StatelessWidget {
   }
 
   _buildImage() {
-    return CircleAvatar(
-      radius: 30,
-      backgroundImage: person.picture == null
-          ? Image.asset(
-              Assets.defaultProfileImage,
-              fit: BoxFit.fill,
-            ).image
-          : Image.network(
-              person.picture!,
-              fit: BoxFit.fill,
-            ).image,
+    return Container(
+      width: 60,
+      height: 60,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        image: DecorationImage(
+          image: person.picture == null
+              ? Image.asset(
+                  Assets.defaultProfileImage,
+                  fit: BoxFit.fill,
+                ).image
+              : Image.network(
+                  person.picture!,
+                  fit: BoxFit.fill,
+                ).image,
+          fit: BoxFit.cover,
+        ),
+      ),
     );
   }
 

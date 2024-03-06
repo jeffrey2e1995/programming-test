@@ -75,7 +75,7 @@ class DetailScreen extends StatelessWidget {
     return Container(
       padding: EdgeInsets.symmetric(horizontal: 12.0, vertical: 10.0),
       decoration: BoxDecoration(
-        color: AppColors.hex_494949,
+        color: AppColors.infoTileBgGrey,
         borderRadius: BorderRadius.circular(5.0),
       ),
       child: Row(

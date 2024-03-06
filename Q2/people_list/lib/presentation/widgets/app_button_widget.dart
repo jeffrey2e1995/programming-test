@@ -30,9 +30,11 @@ class AppButtonWidget extends StatelessWidget {
         child: Container(
           padding: EdgeInsets.symmetric(vertical: 10.0),
           decoration: BoxDecoration(
-            color: highLight ? AppColors.hex_EAB646 : Colors.transparent,
+            color: highLight
+                ? AppColors.buttonHighlightYellow
+                : Colors.transparent,
             border: Border.all(
-              color: AppColors.hex_EAB646,
+              color: AppColors.buttonHighlightYellow,
             ),
             borderRadius: BorderRadius.circular(5.0),
           ),
@@ -41,7 +43,9 @@ class AppButtonWidget extends StatelessWidget {
               text,
               style: TextStyle(
                 fontSize: 18,
-                color: highLight ? AppColors.hex_0B202D : AppColors.hex_EAB646,
+                color: highLight
+                    ? AppColors.dialogBgDarkBlue
+                    : AppColors.buttonHighlightYellow,
                 fontWeight: FontWeight.bold,
               ),
             ),

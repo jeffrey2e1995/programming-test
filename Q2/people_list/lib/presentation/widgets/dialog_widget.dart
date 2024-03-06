@@ -82,8 +82,7 @@ class DialogWidget extends StatelessWidget {
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(10.0),
       ),
-      backgroundColor: AppColors.hex_0B202D,
-      // backgroundColor: Colors.blue,
+      backgroundColor: AppColors.dialogBgDarkBlue,
       child: Padding(
         padding: const EdgeInsets.fromLTRB(18.0, 0, 18.0, 18.0),
         child: Column(
@@ -118,8 +117,7 @@ class DialogWidget extends StatelessWidget {
               subTitle,
               textAlign: msgAlign,
               style: TextStyle(
-                color: AppColors.hex_A5A5A9,
-                // color: Colors.white,
+                color: AppColors.dialogMsgGrey,
                 fontSize: 15,
               ),
             ),
