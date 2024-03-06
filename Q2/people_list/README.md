@@ -9,6 +9,11 @@ Run commands:
 ```
 flutter pub get
 ```
+For iOS only:
+```
+cd ios
+pod install
+```
 ```
 flutter run
 ```
@@ -22,6 +27,8 @@ keyPassword=testing
 keyAlias=moovup_mobile
 storeFile=C:\\Users\\jeffrey.leung\\Apps\\keys\\moovup-keystore.jks</pre>
 3. Replace the corresponding values with the information of your keystore
-4. Run ```flutter run --release``` to verify
+4. Run ```flutter run --release``` to vertify it is working
 
 ## iOS
+1. Set development team in *Signing & Capabilities* in *Xcode*
+2. Select *Product* > *Archive*

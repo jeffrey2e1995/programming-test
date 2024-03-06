@@ -23,10 +23,12 @@ dart Q1/main.dart
 
 Run commands:
 ```
-cd Q2/people_list
-```
-```
 flutter pub get
+```
+For iOS only:
+```
+cd ios
+pod install
 ```
 ```
 flutter run
