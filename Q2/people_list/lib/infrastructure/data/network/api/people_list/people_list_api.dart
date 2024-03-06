@@ -32,7 +32,7 @@ class PeopleListApi {
 
       return null;
     } catch (e) {
-      Log.debug(e);
+      Log.debug(e.toString());
       _errorStore.setErrorMessage(e.toString());
     }
 

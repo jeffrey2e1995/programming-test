@@ -5,30 +5,34 @@
 // gestures. You can also use WidgetTester to find child widgets in the widget
 // tree, read text, and verify that the values of widget properties are correct.
 
-import 'package:flutter/material.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:people_list/infrastructure/data/network/api/people_list/people_list_api.dart';
 import 'package:people_list/infrastructure/singletons/singletons.dart';
 
-import 'package:people_list/presentation/app_widget.dart';
+import 'package:people_list/utils/constants/env.dart';
 
-void main() {
-  testWidgets('Counter increments smoke test', (WidgetTester tester) async {
-    // setup environment
-    await setupSingletons();
+void main() async {
+  group('Test Get List API', () {
+    test('returns a list when http response is successful', () async {
+      // Load env file
+      await dotenv.load(fileName: "env/.env");
 
-    // Build our app and trigger a frame.
-    await tester.pumpWidget(const AppWidget());
+      // setup environment
+      await setupSingletons();
 
-    // Verify that our counter starts at 0.
-    expect(find.text('0'), findsOneWidget);
-    expect(find.text('1'), findsNothing);
+      expect(await getIt.get<PeopleListApi>().getPeopleList(), isA<List>());
+    });
 
-    // Tap the '+' icon and trigger a frame.
-    await tester.tap(find.byIcon(Icons.add));
-    await tester.pump();
+    test('return error message when http response is unsuccessful', () async {
+      // Load env file
+      await dotenv.load(fileName: "env/.env");
+      // Set token to empty
+      Envs.apiGetListToken = '';
+      // setup environment
+      await setupSingletons();
 
-    // Verify that our counter has incremented.
-    expect(find.text('0'), findsNothing);
-    expect(find.text('1'), findsOneWidget);
+      expect(await getIt.get<PeopleListApi>().getPeopleList(), isA<Null>());
+    });
   });
 }
