@@ -34,11 +34,11 @@ storeFile=C:\\Users\\jeffrey.leung\\Apps\\keys\\moovup-keystore.jks</pre>
 2. Select *Product* > *Archive*
 
 # Screenshots
-<img src="demo/screenshots/screenshot_1.png" alt="Screenshot 1" width="300" height="800">
-<img src="demo/screenshots/screenshot_2.png" alt="Screenshot 2" width="300" height="800">
-<img src="demo/screenshots/screenshot_3.png" alt="Screenshot 3" width="300" height="800">
-<img src="demo/screenshots/screenshot_4.png" alt="Screenshot 4" width="300" height="800">
-<img src="demo/screenshots/screenshot_5.png" alt="Screenshot 5" width="300" height="800">
-<img src="demo/screenshots/screenshot_6.png" alt="Screenshot 6" width="300" height="800">
-<img src="demo/screenshots/screenshot_7.png" alt="Screenshot 7" width="300" height="800">
-<img src="demo/screenshots/screenshot_8.png" alt="Screenshot 8" width="300" height="800">
+<img src="demo/screenshots/screenshot_1.png" alt="Screenshot 1" width="370" height="800">
+<img src="demo/screenshots/screenshot_2.png" alt="Screenshot 2" width="370" height="800">
+<img src="demo/screenshots/screenshot_3.png" alt="Screenshot 3" width="370" height="800">
+<img src="demo/screenshots/screenshot_4.png" alt="Screenshot 4" width="370" height="800">
+<img src="demo/screenshots/screenshot_5.png" alt="Screenshot 5" width="370" height="800">
+<img src="demo/screenshots/screenshot_6.png" alt="Screenshot 6" width="370" height="800">
+<img src="demo/screenshots/screenshot_7.png" alt="Screenshot 7" width="370" height="800">
+<img src="demo/screenshots/screenshot_8.png" alt="Screenshot 8" width="370" height="800">
