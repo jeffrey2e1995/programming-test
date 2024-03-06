@@ -21,9 +21,12 @@ dart Q1/main.dart
 ```
 ### Question 2
 
-Run command:
+Run commands:
 ```
 cd Q2/people_list
+```
+```
+flutter pub get
 ```
 ```
 flutter run
