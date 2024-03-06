@@ -10,5 +10,6 @@ class Strings {
   static const no = 'No';
   static const listViewTabTitle = 'List View';
   static const mapViewTabTitle = 'Map View';
-  static const String noRecordMsg = 'No record.';
+  static const noRecordMsg = 'No record.';
+  static const unableToLoadMapMsg = 'Unable to load Google Map when offline.';
 }

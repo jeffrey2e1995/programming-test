@@ -91,6 +91,17 @@ mixin _$PeopleListStore on _PeopleListStore, Store {
   }
 
   @override
+  void setPeopleList(List<Person> list) {
+    final _$actionInfo = _$_PeopleListStoreActionController.startAction(
+        name: '_PeopleListStore.setPeopleList');
+    try {
+      return super.setPeopleList(list);
+    } finally {
+      _$_PeopleListStoreActionController.endAction(_$actionInfo);
+    }
+  }
+
+  @override
   String toString() {
     return '''
 

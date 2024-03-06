@@ -19,7 +19,9 @@ abstract class _PeopleListStore with Store {
 
   // constructor:---------------------------------------------------------------
   _PeopleListStore(PeopleListRepository repository) : _repository = repository {
-    // _peopleList = _repository.peopleList;
+    repository.peopleList.then((list) {
+      setPeopleList(list);
+    });
   }
 
   final ErrorStore _errorStore = getIt.get<ErrorStore>();
@@ -71,10 +73,18 @@ abstract class _PeopleListStore with Store {
   @action
   void savePeopleList(List<Person>? list) {
     _peopleList = list;
+    if (list != null) {
+      _repository.savePeopleList(list);
+    }
   }
 
   @action
   void setCurrentPerson(Person? p) {
     _currentPerson = p;
+  }
+
+  @action
+  void setPeopleList(List<Person> list) {
+    _peopleList = list;
   }
 }

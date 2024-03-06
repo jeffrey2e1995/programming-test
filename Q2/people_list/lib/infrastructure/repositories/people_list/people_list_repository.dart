@@ -1,8 +1,14 @@
 import 'package:people_list/domain/person/model/person.dart';
+import 'package:people_list/infrastructure/data/local/tables/person_table.dart';
 import 'package:people_list/infrastructure/data/network/api/people_list/people_list_api.dart';
+import 'package:people_list/infrastructure/singletons/singletons.dart';
 
 class PeopleListRepository {
   PeopleListApi peopleListApi;
+
+  final _table = getIt.get<PersonTable>();
+
+  Future<List<Person>> get peopleList => _table.getPeopleList();
 
   // constructor
   PeopleListRepository(this.peopleListApi);
@@ -12,14 +18,7 @@ class PeopleListRepository {
     return await peopleListApi.getPeopleList();
   }
 
-  // methods
-  // ProjectInfo get projectInfo => _sharedPrefsHelper.projectInfo;
-
-  // Future<bool> saveProjectInfo(ProjectInfo info) async {
-  //   return await _sharedPrefsHelper.saveProjectInfo(info);
-  // }
-
-  // Future<bool> removeProjectInfo() async {
-  //   return await _sharedPrefsHelper.removeProjectInfo();
-  // }
+  Future<void> savePeopleList(List<Person> list) async {
+    return await _table.updateAllRecords(list);
+  }
 }

@@ -5,6 +5,12 @@ class Person {
   final String? picture;
   final Location? location;
 
+  static const String idKey = '_id';
+  static const String nameKey = 'name';
+  static const String emailKey = 'email';
+  static const String pictureKey = 'picture';
+  static const String locationKey = 'location';
+
   Person({
     required this.id,
     required this.name,
@@ -13,25 +19,29 @@ class Person {
     required this.location,
   });
   factory Person.fromJson(Map<String, dynamic> json) => Person(
-        id: json['_id'] as String,
-        name: json['name'] == null || json['name'] is! Map<String, dynamic>
+        id: json[idKey] as String,
+        name: json[nameKey] == null || json[nameKey] is! Map<String, dynamic>
             ? null
-            : Name.fromJson(json['name']),
-        email: json['email'] as String?,
-        picture: json['picture'] as String,
-        location: json['location'] == null ||
-                json['location'] is! Map<String, dynamic>
+            : Name.fromJson(json[nameKey]),
+        email: json[emailKey] as String?,
+        picture: json[pictureKey] as String,
+        location: json[locationKey] == null ||
+                json[locationKey] is! Map<String, dynamic>
             ? null
-            : Location.fromJson(json['location']),
+            : Location.fromJson(json[locationKey]),
       );
 
-  Map<String, dynamic> toJson() => <String, dynamic>{
-        'id': id,
-        'name': name?.toJson(),
-        'email': email,
-        'picture': picture,
-        'location': location?.toJson(),
-      };
+  Map<String, dynamic> toMap() {
+    return {
+      Person.idKey: id,
+      Name.lastKey: name?.last,
+      Name.firstKey: name?.first,
+      Person.emailKey: email,
+      Person.pictureKey: picture,
+      Location.latitudeKey: location?.latitude,
+      Location.longitudeKey: location?.longitude,
+    };
+  }
 
   @override
   bool operator ==(Object other) =>
@@ -46,19 +56,22 @@ class Name {
   final String? last;
   final String? first;
 
+  static const String lastKey = 'last';
+  static const String firstKey = 'first';
+
   Name({
     required this.last,
     required this.first,
   });
 
   factory Name.fromJson(Map<String, dynamic> json) => Name(
-        last: json['last'] as String?,
-        first: json['first'] as String?,
+        last: json[lastKey] as String?,
+        first: json[firstKey] as String?,
       );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'last': last,
-        'first': first,
+        lastKey: last,
+        firstKey: first,
       };
 
   @override
@@ -71,19 +84,22 @@ class Location {
   final double? latitude;
   final double? longitude;
 
+  static const String latitudeKey = 'latitude';
+  static const String longitudeKey = 'longitude';
+
   Location({
     required this.latitude,
     required this.longitude,
   });
 
   factory Location.fromJson(Map<String, dynamic> json) => Location(
-        latitude: json['latitude'] as double?,
-        longitude: json['longitude'] as double?,
+        latitude: json[latitudeKey] as double?,
+        longitude: json[longitudeKey] as double?,
       );
 
   Map<String, dynamic> toJson() => <String, dynamic>{
-        'latitude': latitude,
-        'longitude': longitude,
+        latitudeKey: latitude,
+        longitudeKey: longitude,
       };
 
   @override

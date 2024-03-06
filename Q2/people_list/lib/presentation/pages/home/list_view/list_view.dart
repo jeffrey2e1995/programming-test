@@ -35,15 +35,18 @@ class ListViewTab extends StatelessWidget {
                       ),
                     ),
                   )
-                : ListView(
-                    children: _peopleListStore.peopleList!
-                        .map((e) => ListViewTileWidget(
-                              person: e,
-                              onTap: () {
-                                _onRecordTap(e);
-                              },
-                            ))
-                        .toList(),
+                : RefreshIndicator(
+                    onRefresh: () => _peopleListStore.getPeopleList(context),
+                    child: ListView(
+                      children: _peopleListStore.peopleList!
+                          .map((e) => ListViewTileWidget(
+                                person: e,
+                                onTap: () {
+                                  _onRecordTap(e);
+                                },
+                              ))
+                          .toList(),
+                    ),
                   ),
       ),
     );

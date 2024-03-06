@@ -2,6 +2,8 @@
 
 import 'package:flutter/material.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:people_list/utils/connectivity/connectivity_status_listener.dart';
+import 'package:people_list/utils/constants/strings.dart';
 
 class GoogleMapWidget extends StatelessWidget {
   final Marker center;
@@ -52,20 +54,34 @@ class GoogleMapWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GoogleMap(
-      onMapCreated: (controller) {
-        controller.showMarkerInfoWindow(center.markerId);
-      },
-      initialCameraPosition: CameraPosition(
-        target: center.position,
-        zoom: zoom,
-      ),
-      myLocationButtonEnabled: false,
-      zoomControlsEnabled: true,
-      tiltGesturesEnabled: false,
-      rotateGesturesEnabled: true,
-      scrollGesturesEnabled: true,
-      markers: markers.map((e) => e).toSet(),
-    );
+    return isConnectedToNetwork
+        ? GoogleMap(
+            onMapCreated: (controller) {
+              controller.showMarkerInfoWindow(center.markerId);
+            },
+            initialCameraPosition: CameraPosition(
+              target: center.position,
+              zoom: zoom,
+            ),
+            myLocationButtonEnabled: false,
+            zoomControlsEnabled: true,
+            tiltGesturesEnabled: false,
+            rotateGesturesEnabled: true,
+            scrollGesturesEnabled: true,
+            markers: markers.map((e) => e).toSet(),
+          )
+        : Container(
+            color: Colors.black,
+            child: Center(
+              child: Text(
+                Strings.unableToLoadMapMsg,
+                style: TextStyle(
+                  color: Colors.red,
+                  fontSize: 20,
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          );
   }
 }

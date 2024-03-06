@@ -5,7 +5,7 @@ import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:people_list/domain/person/model/person.dart';
 import 'package:people_list/presentation/background.dart';
 import 'package:people_list/presentation/widgets/map/google_map_widget.dart';
-import 'package:people_list/utils/constants/assets.dart';
+import 'package:people_list/presentation/widgets/picture/picture_widget.dart';
 import 'package:people_list/utils/constants/colors.dart';
 
 class DetailScreen extends StatelessWidget {
@@ -84,17 +84,8 @@ class DetailScreen extends StatelessWidget {
           Expanded(
             child: Row(
               children: [
-                CircleAvatar(
-                  radius: 30,
-                  backgroundImage: person.picture == null
-                      ? Image.asset(
-                          Assets.defaultProfileImage,
-                          fit: BoxFit.fill,
-                        ).image
-                      : Image.network(
-                          person.picture!,
-                          fit: BoxFit.fill,
-                        ).image,
+                PictureWidget(
+                  imageUrl: person.picture,
                 ),
                 SizedBox(
                   width: 20,

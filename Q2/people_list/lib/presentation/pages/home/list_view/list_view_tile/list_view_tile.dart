@@ -8,7 +8,7 @@ import 'package:people_list/application/people_list/people_list_store.dart';
 import 'package:people_list/domain/person/model/person.dart';
 import 'package:people_list/infrastructure/singletons/singletons.dart';
 import 'package:people_list/presentation/pages/home/list_view/detail/detail.dart';
-import 'package:people_list/utils/constants/assets.dart';
+import 'package:people_list/presentation/widgets/picture/picture_widget.dart';
 import 'package:people_list/utils/constants/colors.dart';
 
 class ListViewTileWidget extends StatelessWidget {
@@ -48,7 +48,9 @@ class ListViewTileWidget extends StatelessWidget {
                 Expanded(
                   child: Row(
                     children: [
-                      _buildImage(),
+                      PictureWidget(
+                        imageUrl: person.picture,
+                      ),
                       SizedBox(
                         width: 20,
                       ),
@@ -70,28 +72,6 @@ class ListViewTileWidget extends StatelessWidget {
             ),
           );
         }),
-      ),
-    );
-  }
-
-  _buildImage() {
-    return Container(
-      width: 60,
-      height: 60,
-      decoration: BoxDecoration(
-        shape: BoxShape.circle,
-        image: DecorationImage(
-          image: person.picture == null
-              ? Image.asset(
-                  Assets.defaultProfileImage,
-                  fit: BoxFit.fill,
-                ).image
-              : Image.network(
-                  person.picture!,
-                  fit: BoxFit.fill,
-                ).image,
-          fit: BoxFit.cover,
-        ),
       ),
     );
   }
