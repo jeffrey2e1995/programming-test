@@ -33,3 +33,5 @@ pod install
 ```
 flutter run
 ```
+
+Check *Q2/people_list/README.md* for details.
